@@ -49,6 +49,7 @@
                             <th>Code</th>
                             <th>Description</th>
                             <th>Qty</th>
+                            <th>Unit</th>
                             <th>Price</th>
                             <th>Amount</th>
                         </tr>
@@ -59,6 +60,7 @@
                             <td>{{ d.code }}</td>
                             <td>{{ d.description }}</td>
                             <td>{{ d.qty }}</td>
+                            <td>{{ d.unit }}</td>
                             <td>{{ d.price }}</td>
                             <td>{{ d.amount }}</td>
                         </tr>
@@ -179,13 +181,18 @@ export default {
 
                     const no     = parts[0]
                     const code   = parts[1]
-                    const qty    = parts[parts.length - (3 + offset)]
+                    
+                    const rawQty = parts[parts.length - (3 + offset)]
+                    const match = rawQty.match(/^(\d+)(\D*)$/)
+                    const qty = match ? match[1] : rawQty
+                    const unit = match ? match[2] : ''
+
                     const price  = parts[parts.length - (2 + offset)]
                     const amount = parts[parts.length - (1 + offset)]
 
                     const description = parts.slice(2, parts.length - (3 + offset)).join(' ')
 
-                    currentSO.details.push({ no, code, description, qty, price, amount })
+                    currentSO.details.push({ no, code, description, qty, unit, price, amount })
                 }
             }
 
