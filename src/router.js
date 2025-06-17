@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from './pages/HomePage.vue';
-import UploadPage from './pages/UploadPage.vue';
+import UploadSO from './pages/UploadSO.vue';
+import UploadIV from './pages/UploadIV.vue';
 
 const routes = [
     {
@@ -9,9 +10,14 @@ const routes = [
         component: HomePage 
     },
     { 
-        path: '/upload', 
-        name: 'upload', 
-        component: UploadPage 
+        path: '/upload/so', 
+        name: 'uploadSO', 
+        component: UploadSO 
+    },
+    { 
+        path: '/upload/iv', 
+        name: 'uploadIV', 
+        component: UploadIV 
     }
 ];
 
